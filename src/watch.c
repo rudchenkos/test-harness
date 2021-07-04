@@ -43,6 +43,12 @@ static bool add_source(const char* filepath) {
     return true;
 }
 
+static void add_stdin_watch() {
+    int idx = nsources++;
+    source_paths[idx] = NULL;
+    EV_SET(&kev_changelist[idx], STDIN_FILENO, EVFILT_READ, EV_ADD | EV_ONESHOT, 0, 0, NULL);
+}
+
 static bool reopen_source_file(int fd) {
     for (size_t i = 0; i < nsources; ++i) {
         if (kev_changelist[i].ident == fd) {
@@ -90,6 +96,13 @@ static bool rebuild_self(const char* selfpath) {
     return true;
 }
 
+static void read_stdin() {
+    // Read out all accumulated charactes to prevent immediate triggering of the
+    // stdin event filter
+    char buf[16] = {0};
+    fgets(buf, 16, stdin);
+}
+
 void test_harness_start_watch(const char* argv0, const char* src) {
     int queue = kqueue();
     if (queue == -1) {
@@ -97,6 +110,7 @@ void test_harness_start_watch(const char* argv0, const char* src) {
         exit(-1);
     }
 
+    add_stdin_watch();
     add_source(src);
 
     struct kevent events[1] = { 0 };
@@ -104,6 +118,10 @@ void test_harness_start_watch(const char* argv0, const char* src) {
 
     while ((rc = kevent(queue, kev_changelist, nsources, events, 1, NULL)) != -1) {
         TRACE_PRINTF("Changes detected\n");
+
+        if (events[0].ident == STDIN_FILENO) {
+            read_stdin();
+        }
 
         if (rebuild_self(argv0)) {
             execl(argv0, argv0, NULL);
