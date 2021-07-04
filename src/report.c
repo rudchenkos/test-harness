@@ -10,13 +10,13 @@ static size_t total_tests = 0;
 static size_t tests_passed = 0;
 static size_t tests_failed = 0;
 
-static bool quiet = false;
+bool test_harness_report_quiet = false;
 
 static const char* current_suite_name = NULL;
 static const char* current_test_name = NULL;
 
 static void report_printf(const char* fmt, ...) {
-    if (quiet) return;
+    if (test_harness_report_quiet) return;
 
     va_list ap;
     va_start(ap, fmt);
@@ -25,10 +25,6 @@ static void report_printf(const char* fmt, ...) {
 }
 
 void test_harness_report_begin(const char* suitename) {
-    const char* var = getenv("TEST_QUIET");
-    if (var != NULL && (strcasecmp(var, "true") || atoi(var))) {
-        quiet = true;
-    }
     report_printf("=== Testing %s\n", suitename);
     current_suite_name = suitename;
 }

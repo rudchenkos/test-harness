@@ -103,7 +103,7 @@ static void read_stdin() {
     fgets(buf, 16, stdin);
 }
 
-void test_harness_start_watch(const char* argv0, const char* src) {
+void test_harness_start_watch(char** argv, const char* src) {
     int queue = kqueue();
     if (queue == -1) {
         perror("kqueue");
@@ -123,8 +123,8 @@ void test_harness_start_watch(const char* argv0, const char* src) {
             read_stdin();
         }
 
-        if (rebuild_self(argv0)) {
-            execl(argv0, argv0, NULL);
+        if (rebuild_self(argv[0])) {
+            execv(argv[0], argv);
             perror("execl");
         }
 

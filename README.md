@@ -2,12 +2,24 @@
 
 ## Quick start
 
+Build the example and run its tests:
 ```
 $ make examples
 $ ./examples/palindrome.test
 ```
 
+Now, let's run the tests in the watch mode, when the tests are automatically
+recompiled and re-run every time the source file is changed:
+
+```
+$ ./examples/palindrome.test -w
+```
 Edit `examples/palindrome.c` and observe test results.
+
+Explore other options the test provides:
+```
+$ ./examples/palindrome.test -h
+```
 
 ## How to use
 
