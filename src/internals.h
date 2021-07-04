@@ -11,7 +11,7 @@ extern bool test_harness_report_quiet;
 void test_harness_report_begin(const char* suitename);
 void test_harness_report_test_start(const char* testname);
 void test_harness_report_test_passed();
-void test_harness_report_test_failed(const char* description);
+void test_harness_report_test_failed(const char* diagnostic);
 int test_harness_report_end(); /** returns number of failed tests */
 
 /** Run the current test suite in the watch mode
