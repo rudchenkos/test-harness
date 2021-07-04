@@ -5,7 +5,7 @@ include config.mk
 
 HEADERS=include/test-harness.h
 LIB=src/libtestharness.a
-OBJS=src/test.o src/context.o src/expect.o src/report.o src/watch.o src/main.o
+OBJS=src/test.o src/expect.o src/report.o src/watch.o src/main.o
 CFLAGS+=-I include/
 
 $(LIB): $(OBJS) $(HEADERS)

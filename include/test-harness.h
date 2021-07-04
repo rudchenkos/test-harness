@@ -32,13 +32,6 @@ int test_harness_main(int argc, char** argv, const char* source_file);
 #define TEST_HARNESS_MAIN int main(int argc, char** argv) \
     { return test_harness_main(argc, argv, __FILE__); }
 
-#define TEST_CONTEXT(description, block) \
-    do { \
-        test_harness_push_context(description); \
-        block; \
-        test_harness_pop_context(); \
-    } while(false);
-
 // Vim users, you may want to add "let c_no_curly_error=1" to vimrc
 #define TEST_IT(title, block) \
     do { \
@@ -51,7 +44,6 @@ int test_harness_main(int argc, char** argv, const char* source_file);
 
 #include <setjmp.h>
 #define ANCHOR setjmp(__test_harness_jmpbuf)
-
 /* Internal. Return point for test abortion */
 extern jmp_buf __test_harness_jmpbuf;
 
