@@ -39,6 +39,7 @@ int test_harness_main(int argc, char** argv, const char* source_file);
         test_harness_pop_context(); \
     } while(false);
 
+// Vim users, you may want to add "let c_no_curly_error=1" to vimrc
 #define TEST_IT(title, block) \
     do { \
         if (test_harness_begin_test(title, ANCHOR)) { \

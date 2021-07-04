@@ -17,3 +17,12 @@ regardless of its original role, can be compiled as an executable which runs
 own tests.
 
 In watch mode, the runner will attemt to rebuild the test by executing `make <SELF>`.
+
+# FAQ
+
+## Vim highlights lambda-like expressions passed to TEST_IT and TEST_CONTEXT
+
+Add this to your vimrc:
+```
+let c_no_curly_error=1
+```
