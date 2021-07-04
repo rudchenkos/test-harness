@@ -1,3 +1,5 @@
+config.mk
 *.o
 *.a
 examples/*.test
+*.dSYM

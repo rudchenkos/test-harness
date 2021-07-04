@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+while (( $# )) ; do
+	EXTRA_VARS=${EXTRA_VARS}${EXTRA_VARS:+$'\n'}$1
+	shift 1
+done
+
+cat > config.mk <<EOF
+${EXTRA_VARS}
+EOF
+
+echo 'config.mk written'
