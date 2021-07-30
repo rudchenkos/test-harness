@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <sys/errno.h>
+#include <errno.h>
 
 /** Fail the current test case. Aborts test execution */
 void test_harness_fail(const char* fmt, ...);
