@@ -51,7 +51,7 @@ void test_harness_report_test_start(const char* testname) {
 void test_harness_report_test_passed() {
     ++tests_passed;
     assert(current_test_name);
-    report_printf("\e[0;32mok %zu - %s\e[0m\n", total_tests, current_test_name);
+    report_printf("\e[0;32mok %zu - %s\e[0m\n", test_harness_test_index, current_test_name);
 }
 
 void test_harness_report_test_failed(const char* description) {

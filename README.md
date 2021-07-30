@@ -16,9 +16,11 @@ $ ./examples/palindrome.test -w
 ```
 Edit `examples/palindrome.c` and observe test results.
 
-Explore other options the test provides:
+## Focusing
+
+When debugging a test failure, it helps to focus on a single test case:
 ```
-$ ./examples/palindrome.test -h
+$ lldb -- ./examples/palindrome.test -f 3
 ```
 
 ## How to use

@@ -6,6 +6,8 @@
 
 #define TEST_HARNESS_VERSION "1.0.0"
 
+extern size_t test_harness_test_index;
+extern size_t test_harness_focused_test;
 extern bool test_harness_report_quiet;
 
 void test_harness_report_begin(const char* suitename);

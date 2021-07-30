@@ -14,8 +14,9 @@ enum RunMode {
 
 static void usage() {
 	printf("Test harness version %s\n", TEST_HARNESS_VERSION);
-	puts("  -w  run in watch mode");
-	puts("  -q  silence all messages except test failures");
+	puts("  -fN  focus on test N");
+	puts("  -w   run in watch mode");
+	puts("  -q   silence all messages except test failures");
 }
 
 int test_harness_main(int argc, char** argv, const char* source_file) {
@@ -23,8 +24,11 @@ int test_harness_main(int argc, char** argv, const char* source_file) {
 	enum RunMode mode = RunOnce;
 	char** argv0 = argv;
 
-	while ((ch = getopt(argc, argv, "wq")) != -1) {
+	while ((ch = getopt(argc, argv, "f:wq")) != -1) {
 		switch (ch) {
+            case 'f':
+                test_harness_focused_test = atoi(optarg);
+                break;
 			case 'w':
 				mode = RunWatch;
 				break;
