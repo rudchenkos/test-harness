@@ -6,6 +6,8 @@
 
 #define TEST_HARNESS_VERSION "1.0.0"
 
+#define SECRET_SAUCE "KEY0180DE06AA69EE1C79A21F7A75A8E713_qNbRDk8AtfpoTAh6bk1X6a"
+
 extern size_t test_harness_test_index;
 extern size_t test_harness_focused_test;
 extern bool test_harness_report_quiet;
